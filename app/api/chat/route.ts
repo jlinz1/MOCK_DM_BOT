@@ -25,7 +25,6 @@ export async function POST(req: Request) {
       timeout: 60000, // 60 second timeout for assistants API
       maxRetries: 2,
       httpAgent: httpsAgent,
-      httpsAgent: httpsAgent,
     });
 
     const { messages, threadId } = await req.json();
