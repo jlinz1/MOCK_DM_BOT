@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { NextResponse } from "next/server";
 import https from "https";
 
-const ASSISTANT_ID = "asst_F5dbOMeB3laJzTdaLMaiKacH";
+const ASSISTANT_ID = "asst_o4YJv2Ll2OXadzOZorfoFUfk";
 
 export async function POST(req: Request) {
   try {
