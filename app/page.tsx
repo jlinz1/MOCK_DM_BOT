@@ -30,7 +30,8 @@ function MessageBubble({ message, index }: { message: Message; index: number }) 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([
     {
-      role: "assistant", content: "To start:
+      role: "assistant",
+      content: `To start:
 
 Send 1 → Weight loss for busy men
 
@@ -46,7 +47,8 @@ Your goal as the setter:
 
 Ask questions, uncover pain, context, and motivation
 
-When you are ready to pitch, type the word “Pitch”" }
+When you are ready to pitch, type the word "Pitch"`,
+    },
   ]);
   const [input, setInput] = useState("");
   const [threadId, setThreadId] = useState<string | null>(null);
