@@ -16,11 +16,10 @@ function MessageBubble({ message, index }: { message: Message; index: number }) 
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <div
-        className={`max-w-[75%] rounded-xl shadow-sm ${
-          isUser
-            ? "bg-[#2563EB] text-white"
-            : "bg-white text-black border border-gray-200"
-        }`}
+        className={`max-w-[75%] rounded-xl shadow-sm ${isUser
+          ? "bg-[#2563EB] text-white"
+          : "bg-white text-black border border-gray-200"
+          }`}
       >
         <div className="p-4 whitespace-pre-wrap">{message.content}</div>
       </div>
@@ -30,7 +29,24 @@ function MessageBubble({ message, index }: { message: Message; index: number }) 
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Send 1, 2 or 3 to generate a scenario." }
+    {
+      role: "assistant", content: "To start:
+
+Send 1 → Weight loss for busy men
+
+Send 2 → Dropshipping course
+
+Send 3 → Weight loss for women
+
+Once you send 1 / 2 / 3, you will be given a lead to message.
+
+Your goal as the setter:
+
+        Take the prospect through discovery
+
+Ask questions, uncover pain, context, and motivation
+
+When you are ready to pitch, type the word “Pitch”" }
   ]);
   const [input, setInput] = useState("");
   const [threadId, setThreadId] = useState<string | null>(null);
@@ -82,7 +98,7 @@ export default function Home() {
       }
 
       const data = await res.json();
-      
+
       if (data.message && data.message.role && data.message.content) {
         setMessages((prev) => [...prev, data.message]);
         // Store thread ID for future messages
@@ -95,7 +111,7 @@ export default function Home() {
     } catch (error: any) {
       console.error("Error sending message:", error);
       let errorMessage = "Sorry, I encountered an error. Please try again.";
-      
+
       if (error?.message) {
         errorMessage = error.message;
       } else if (error?.name === "TypeError") {
@@ -105,7 +121,7 @@ export default function Home() {
           errorMessage = `TypeError: ${error.message || "Unknown error"}`;
         }
       }
-      
+
       setMessages((prev) => [
         ...prev,
         {
